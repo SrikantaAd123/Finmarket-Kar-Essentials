@@ -249,32 +249,31 @@ The catalogue covers:
 
 ---
 
-## 5. Application Architecture
+## Application Architecture
 
-The project includes the following application components.
+FINMARKET Kart Essentials follows a Streamlit–FastAPI–MySQL architecture.
 
 | Component | Responsibility |
-| --- | --- |
-| Angular Client | Storefront interface and customer-facing pages |
-| FastAPI Backend | REST API and application services |
-| MySQL Database | Persistent product, category and commerce data |
-| Streamlit Application | Python-based application interface |
+|---|---|
+| Streamlit | Frontend interface and application pages |
+| FastAPI | Backend REST APIs and application logic |
+| Catalogue API | Product, category and brand management |
+| Commerce API | Shopping cart and order management |
+| MySQL | Persistent database for catalogue and commerce data |
 | Alembic | Database migration management |
 | SQL Scripts | Database creation, catalogue and publishing operations |
 | Git | Source control and project version management |
 
-### General architecture
+### Architecture Diagram
 
 ```text
                  FINMARKET Kart Essentials
                            |
-              +------------+------------+
-              |                         |
-         Angular Client             Streamlit App
-              |                         |
-              +------------+------------+
+                     Streamlit App
+                    (Frontend / UI)
                            |
                        FastAPI
+                    (Backend API)
                            |
               +------------+------------+
               |                         |
@@ -282,13 +281,17 @@ The project includes the following application components.
               |                         |
               +------------+------------+
                            |
-                       MySQL
+                         MySQL
+                       (Database)
+                           |
+              +------------+------------+
+              |            |            |
+          Categories    Products    Brands
+              |            |            |
+              +------------+------------+
+                           |
+                  Commerce Data
                            |
               +------------+------------+
               |                         |
-           Categories               Products
-              |                         |
-              +------------+------------+
-                           |
-                    Orders and Cart
-                    
+            Cart                     Orders
